@@ -183,7 +183,7 @@
 
   /* download */
   #download{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
-  .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+  .dl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px}
   .dl-card{
     background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);
     border-radius:var(--radius);padding:36px 28px;text-align:center;transition:.25s;
@@ -236,12 +236,18 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
   .reveal.in{opacity:1;transform:none}
 
+  @media(max-width:980px){
+    .dl-grid{grid-template-columns:repeat(2,1fr)}
+  }
   @media(max-width:860px){
     .nav-links{display:none}
     .menu-btn{display:block}
-    .feat-grid,.dl-grid{grid-template-columns:1fr}
+    .feat-grid{grid-template-columns:1fr}
     .shots{grid-template-columns:1fr}
     .hero-stats{gap:32px}
+  }
+  @media(max-width:560px){
+    .dl-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -276,7 +282,7 @@
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="n">5</div><div class="l">Mod loaders</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Plataformas</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Plataformas</div></div>
       <div class="stat"><div class="n">∞</div><div class="l">Instâncias</div></div>
     </div>
   </div>
@@ -329,6 +335,11 @@
         <div class="os-ico">🐧</div><h3>Linux</h3>
         <div class="meta">.AppImage · x86_64</div>
         <a href="#" class="dl-btn" data-os="linux">Descarregar</a>
+      </div>
+      <div class="dl-card reveal">
+        <div class="os-ico">🤖</div><h3>Android</h3>
+        <div class="meta">.apk · Android 8+</div>
+        <a href="#" class="dl-btn" data-os="android">Descarregar</a>
       </div>
     </div>
   </div>
@@ -423,7 +434,8 @@
   const DOWNLOAD_LINKS = {
     windows: '', // ex: 'https://github.com/UTILIZADOR/REPO/releases/latest/download/PRLauncher-Setup.exe'
     mac:     '',
-    linux:   ''
+    linux:   '',
+    android: ''
   };
   document.querySelectorAll('.dl-btn').forEach(btn=>{
     btn.addEventListener('click',e=>{
