@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PRLauncher — O teu launcher de Minecraft</title>
-<meta name="description" content="PRLauncher — um launcher de Minecraft moderno, rápido e leve. Vanilla, Fabric, Forge, NeoForge e Quilt num só sítio.">
+<meta name="description" content="PRLauncher — um launcher de Minecraft moderno, rápido e leve. Para Windows, macOS, Linux e agora também Android. Vanilla, Fabric, Forge, NeoForge e Quilt num só sítio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=VT323&display=swap" rel="stylesheet">
@@ -62,11 +62,19 @@
   .nav-links a{color:var(--text-dim);font-weight:500;font-size:.95rem;transition:color .2s}
   .nav-links a:hover{color:var(--text)}
   .nav-cta{
-    background:var(--green-deep);color:#06150c;padding:9px 20px;border-radius:10px;
-    font-weight:700;transition:transform .15s,box-shadow .2s;
-    box-shadow:0 6px 18px -6px var(--green-deep);
+    background:linear-gradient(135deg,#86efac 0%,var(--green) 55%,var(--green-deep) 100%);
+    color:#06150c;padding:12px 30px;border-radius:12px;
+    font-weight:900;font-size:1.05rem;letter-spacing:-.01em;
+    transition:transform .15s,box-shadow .2s,filter .2s;
+    box-shadow:0 0 0 1px rgba(134,239,172,.6), 0 10px 26px -4px var(--green-deep), 0 0 22px -2px rgba(74,222,128,.5);
+    animation:ctaPulse 2s ease-in-out infinite;
   }
-  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -6px var(--green-deep)}
+  .nav-cta::after{content:" ↓";font-weight:900}
+  .nav-cta:hover{filter:brightness(1.08);transform:translateY(-3px) scale(1.06);box-shadow:0 0 0 1px rgba(134,239,172,.85), 0 16px 34px -6px var(--green-deep), 0 0 30px 0 rgba(74,222,128,.55);animation:none}
+  @keyframes ctaPulse{
+    0%,100%{box-shadow:0 0 0 1px rgba(134,239,172,.6), 0 10px 26px -4px var(--green-deep), 0 0 18px -2px rgba(74,222,128,.4);transform:scale(1)}
+    50%{box-shadow:0 0 0 1px rgba(134,239,172,.85), 0 10px 30px -2px var(--green), 0 0 34px 2px rgba(74,222,128,.6);transform:scale(1.03)}
+  }
   .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:1.6rem;cursor:pointer}
 
   /* ===== HERO ===== */
@@ -183,10 +191,16 @@
 
   /* download */
   #download{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
-  .dl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px}
+  .dl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px}
   .dl-card{
     background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);
-    border-radius:var(--radius);padding:36px 28px;text-align:center;transition:.25s;
+    border-radius:var(--radius);padding:36px 24px;text-align:center;transition:.25s;position:relative;
+  }
+  .dl-card.new{border-color:rgba(74,222,128,.35)}
+  .tag-new{
+    position:absolute;top:14px;right:14px;background:var(--green-deep);color:#06150c;
+    font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;
   }
   .dl-card:hover{border-color:rgba(74,222,128,.4);transform:translateY(-6px)}
   .dl-card .os-ico{font-size:2.6rem;margin-bottom:16px}
@@ -236,17 +250,15 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
   .reveal.in{opacity:1;transform:none}
 
-  @media(max-width:980px){
-    .dl-grid{grid-template-columns:repeat(2,1fr)}
-  }
   @media(max-width:860px){
     .nav-links{display:none}
     .menu-btn{display:block}
     .feat-grid{grid-template-columns:1fr}
+    .dl-grid{grid-template-columns:repeat(2,1fr)}
     .shots{grid-template-columns:1fr}
     .hero-stats{gap:32px}
   }
-  @media(max-width:560px){
+  @media(max-width:480px){
     .dl-grid{grid-template-columns:1fr}
   }
 </style>
@@ -273,9 +285,9 @@
   <div class="block dirt b4"></div>
 
   <div class="wrap hero">
-    <div class="badge"><span class="dot"></span> Versão 1.0.0 disponível</div>
+    <div class="badge"><span class="dot"></span> Agora também no Android</div>
     <h1>O teu Minecraft,<br><span class="grad">lançado à tua maneira.</span></h1>
-    <p class="lead">Um launcher moderno, leve e rápido. Gere instâncias, troca de mod loaders e entra no jogo em segundos — tudo numa interface limpa.</p>
+    <p class="lead">Um launcher moderno, leve e rápido. Gere instâncias, troca de mod loaders e entra no jogo em segundos — no computador ou no telemóvel.</p>
     <div class="hero-cta">
       <a href="#download" class="btn btn-primary">▶ Descarregar grátis</a>
       <a href="#features" class="btn btn-ghost">Ver funcionalidades</a>
@@ -301,7 +313,7 @@
       <div class="card reveal"><div class="ico">📦</div><h3>Gestão de instâncias</h3><p>Cria quantas instâncias quiseres, cada uma com a sua versão, loader e RAM.</p></div>
       <div class="card reveal"><div class="ico">🔐</div><h3>Login Microsoft</h3><p>Autentica com a tua conta Microsoft e joga a versão completa do Minecraft.</p></div>
       <div class="card reveal"><div class="ico">🎚️</div><h3>RAM ajustável</h3><p>Define a memória de cada instância com um simples slider, de 512 MB a 16 GB.</p></div>
-      <div class="card reveal"><div class="ico">🖥️</div><h3>Multi-plataforma</h3><p>Disponível para Windows, macOS e Linux a partir da mesma base.</p></div>
+      <div class="card reveal"><div class="ico">🖥️</div><h3>Multi-plataforma</h3><p>Disponível para Windows, macOS, Linux e Android a partir da mesma base.</p></div>
     </div>
     <div class="loaders reveal">
       <span class="chip">Vanilla</span>
@@ -318,7 +330,7 @@
     <div class="reveal">
       <div class="eyebrow">Download</div>
       <h2 class="sec-title">Escolhe a tua plataforma</h2>
-      <p class="sec-sub">Grátis e de código aberto. Descarrega a versão mais recente.</p>
+      <p class="sec-sub">Grátis e de código aberto. Disponível para desktop e Android — descarrega a versão mais recente.</p>
     </div>
     <div class="dl-grid">
       <div class="dl-card reveal">
@@ -336,9 +348,10 @@
         <div class="meta">.AppImage · x86_64</div>
         <a href="#" class="dl-btn" data-os="linux">Descarregar</a>
       </div>
-      <div class="dl-card reveal">
+      <div class="dl-card new reveal">
+        <span class="tag-new">Novo</span>
         <div class="os-ico">🤖</div><h3>Android</h3>
-        <div class="meta">.apk · Android 8+</div>
+        <div class="meta">.apk · Android 8.0+</div>
         <a href="#" class="dl-btn" data-os="android">Descarregar</a>
       </div>
     </div>
@@ -366,7 +379,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Funciona em que sistemas? <span class="ic">+</span></button>
-        <div class="faq-a"><p>Windows, macOS e Linux. É uma aplicação de desktop — não há versão para telemóvel.</p></div>
+        <div class="faq-a"><p>Windows, macOS, Linux e Android. Além das versões de desktop, há agora uma aplicação para Android (Android 8.0 ou superior).</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Como reporto um problema? <span class="ic">+</span></button>
@@ -435,7 +448,7 @@
     windows: '', // ex: 'https://github.com/UTILIZADOR/REPO/releases/latest/download/PRLauncher-Setup.exe'
     mac:     '',
     linux:   '',
-    android: ''
+    android: ''  // ex: '.../PRLauncher.apk'
   };
   document.querySelectorAll('.dl-btn').forEach(btn=>{
     btn.addEventListener('click',e=>{
